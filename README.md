@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column        |Type    | Options     |
-|---------------|--------|-------------|
-| nickname      | string | null: false |
-| email         | string | null: false |
-| password      | string | null: false |
-| first_name    | string | null: false |
-| last_name     | string | null: false |
-| first_name_k  | string | null: false |
-| last_name_k   | string | null: false |
-| birthday-year | date   | null: false |
+| Column             | Type   | Options                  |
+|--------------------|--------|--------------------------|
+| nickname           | string | null: false              |
+| encrypted_password | string | null: false, unique: true|
+| password           | string | null: false              |
+| first_name         | string | null: false              |
+| last_name          | string | null: false              |
+| first_name_k       | string | null: false              |
+| last_name_k        | string | null: false              |
+| birthday-year      | date   | null: false              |
 
 ### Association
 
@@ -23,9 +23,8 @@
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
 | name          | string     | null: false                    |
-| image         | text       | null: false                    |
 | description   | text       | null: false                    |
-| category      | string     | null: false                    |
+| category_id   | integer    | null: false                    |
 | state         | string     | null: false                    |
 | postage       | string     | null: false                    |
 | regional      | references | null: false, foreign_key: true |

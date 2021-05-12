@@ -1,6 +1,6 @@
 # テーブル設計
 
-## users　テーブル
+## users テーブル
 
 | Column        |Type    | Options     |
 |---------------|--------|-------------|
@@ -18,7 +18,7 @@
 - has_many :items
 - has_many :history's
 
-## items　テーブル
+## items テーブル
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
@@ -40,12 +40,12 @@
 - has_one :history
 - has_one :address
 
-## history's　テーブル
+## history's テーブル
 
-| Column | Type   | Options     |
-|--------|--------|-------------|
-| user   | string | null: false |
-| item   | string | null: false |
+| Column | Type   | Options                        |
+|--------|--------|--------------------------------|
+| user   | string | null: false, foreign_key: true |
+| item   | string | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,7 +53,7 @@
 - belongs_to :items
 - belongs_to :addresses
 
-## addresses　テーブル
+## addresses テーブル
 
 | Column       | Type   | Options     |
 |--------------|--------|-------------|

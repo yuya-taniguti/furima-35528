@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :histories
+- has_one :history
 
 ## histories テーブル
 
@@ -46,16 +46,16 @@
 
 ### Association
 
-- has_many :users
+- belongs_to :users
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 ## addresses テーブル
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
 | postal_code   | string     | null: false                    |
-| prefectures   | string     | null: false                    |
+| regional_id   | integer    | null: false                    |
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
 | phone_number  | string     | null: false                    |
@@ -65,4 +65,3 @@
 ### Association
 
 - belongs_to :history
-Building

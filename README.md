@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options                  |
-|--------------------|--------|--------------------------|
-| nickname           | string | null: false              |
-| encrypted_password | string | null: false, unique: true|
-| password           | string | null: false              |
-| first_name         | string | null: false              |
-| last_name          | string | null: false              |
-| first_name_k       | string | null: false              |
-| last_name_k        | string | null: false              |
-| birthday-year      | date   | null: false              |
+| Column             | Type       | Options                            |
+|--------------------|------------|------------------------------------|
+| nickname           | references | null: false, foreign_key: true     |
+| email              | string     | null: false, unique: true          |
+| encryped_password  | string     | null: false                        |
+| first_name         | string     | null: false                        |
+| last_name          | string     | null: false                        |
+| first_name_k       | string     | null: false                        |
+| last_name_k        | string     | null: false                        |
+| birthday-year      | date       | null: false                        |
 
 ### Association
 
@@ -20,18 +20,17 @@
 
 ## items テーブル
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| name          | string     | null: false                    |
-| description   | text       | null: false                    |
-| category_id   | integer    | null: false                    |
-| state         | string     | null: false                    |
-| postage       | string     | null: false                    |
-| regional      | references | null: false, foreign_key: true |
-| shipping_data | string     | null: false                    |
-| price         | string     | null: false                    |
-| seller_id     | references | null: false, foreign_key: true |
-| buyer_id      | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+|-------------------|------------|--------------------------------|
+| name              | string     | null: false                    |
+| description       | text       | null: false                    |
+| category_id       | integer    | null: false                    |
+| state_id          | integer    | null: false                    |
+| postage_id        | integer    | null: false                    |
+| regional_id       | integer    | null: false                    |
+| shipping_data_id  | integer    | null: false                    |
+| price             | string     | null: false                    |
+| buyer_id          | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -41,10 +40,10 @@
 
 ## history's テーブル
 
-| Column | Type   | Options                        |
-|--------|--------|--------------------------------|
-| user   | string | null: false, foreign_key: true |
-| item   | string | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+|--------|------------|--------------------------------|
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 

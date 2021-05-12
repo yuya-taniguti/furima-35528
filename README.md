@@ -1,24 +1,69 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users　テーブル
 
-Things you may want to cover:
+| Column        |Type    | Options     |
+|---------------|--------|-------------|
+| nickname      | string | null: false |
+| email         | string | null: false |
+| password      | string | null: false |
+| first_name    | string | null: false |
+| last_name     | string | null: false |
+| first_name_k  | string | null: false |
+| last_name_k   | string | null: false |
+| birthday-year | date   | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :history's
 
-* Configuration
+## items　テーブル
 
-* Database creation
+| Column        | Type       | Options                        |
+|---------------|------------|--------------------------------|
+| name          | string     | null: false                    |
+| image         | text       | null: false                    |
+| description   | text       | null: false                    |
+| category      | string     | null: false                    |
+| state         | string     | null: false                    |
+| postage       | string     | null: false                    |
+| regional      | references | null: false, foreign_key: true |
+| shipping_data | string     | null: false                    |
+| price         | string     | null: false                    |
+| seller_id     | references | null: false, foreign_key: true |
+| buyer_id      | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :history
+- has_one :address
 
-* Services (job queues, cache servers, search engines, etc.)
+## history's　テーブル
 
-* Deployment instructions
+| Column | Type   | Options     |
+|--------|--------|-------------|
+| user   | string | null: false |
+| item   | string | null: false |
 
-* ...
+### Association
+
+- has_many :users
+- belongs_to :items
+- belongs_to :addresses
+
+## addresses　テーブル
+
+| Column       | Type   | Options     |
+|--------------|--------|-------------|
+| postal_code  | string | null: false |
+| prefectures  | string | null: false |
+| municipality | string | null: false |
+| address      | string | null: false |
+| phone_number | string | null: false |
+
+### Association
+
+- belongs_to :history
+- belongs_to :item

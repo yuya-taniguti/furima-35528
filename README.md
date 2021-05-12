@@ -59,8 +59,8 @@
 | municipality  | string     | null: false                    |
 | address       | string     | null: false                    |
 | phone_number  | string     | null: false                    |
-| Building_name | string     | null: false                    |
-| histories     | references | null: false, foreign_key: true |
+| building_name | string     |                                |
+| history       | references | null: false, foreign_key: true |
 
 ### Association
 

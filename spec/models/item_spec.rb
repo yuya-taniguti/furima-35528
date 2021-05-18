@@ -12,14 +12,14 @@ RSpec.describe Item, type: :model do
       end
 
       it '半角数字でなければ登録できること' do
-        @item.price = '300'
+        @item.price = 300
         @item.valid?
         expect(@item).to be_valid
       end
 
       it 'priceが300 〜 9,999,999の間だと登録できる' do
-        @item.price = '100'
-        @item.price = '1000000'
+        @item.price = 100
+        @item.price = 1000000
         @item.valid?
         expect(@item).to be_valid
       end
@@ -88,7 +88,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'regional_idが１(--)だと登録できない' do
-        @item.regional_id = '1'
+        @item.regional_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Regional must be other than 1"
       end
@@ -130,15 +130,21 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが299円以下では登録できないこと' do
-        @item.price = '290'
+        @item.price = 290
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is not included in the list"
       end
 
       it '10,000,000以上では登録できないこと' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is not included in the list"
+      end
+
+      it 'userが紐付いていないと登録できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "User must exist"
       end
     end
   end

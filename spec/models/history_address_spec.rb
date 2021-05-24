@@ -2,12 +2,21 @@ require 'rails_helper'
 
 RSpec.describe HistoryAddress, type: :model do
   before do
-    @history_address = FactoryBot.build(:history_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    sleep 0.1
+    @history_address = FactoryBot.build(:history_address, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入機能' do
     context '正常系' do
       it '全てあれば登録できること' do
+        expect(@history_address).to be_valid
+      end
+
+      it 'building_nameがなくても登録できること' do
+        @history_address.building_name = ''
+        @history_address.valid?
         expect(@history_address).to be_valid
       end
 
@@ -90,10 +99,22 @@ RSpec.describe HistoryAddress, type: :model do
         expect(@history_address.errors.full_messages).to include "Phone number is invalid"
       end
       
+      it "user_idが空では登録できないこと" do
+        @history_address.user_id = nil
+        @history_address.valid?
+        expect(@history_address.errors.full_messages).to include "User can't be blank"
+      end
+
+      it "item_idが空では登録できないこと" do
+        @history_address.item_id = nil
+        @history_address.valid?
+        expect(@history_address.errors.full_messages).to include "Item can't be blank"
+      end
+
       it "tokenが空では登録できないこと" do
         @history_address.token = nil
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include("Token can't be blank")
+        expect(@history_address.errors.full_messages).to include "Token can't be blank"
       end
     end
   end

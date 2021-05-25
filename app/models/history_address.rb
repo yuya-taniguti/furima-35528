@@ -10,6 +10,7 @@ class HistoryAddress
       validates :municipality
       validates :address
       validates :phone_number
+      validates :token
   end
 
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }

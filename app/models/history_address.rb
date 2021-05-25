@@ -1,5 +1,4 @@
 class HistoryAddress
-  attr_accessor :token
   include ActiveModel::Model
   attr_accessor :postal_code, :regional_id, :municipality, :address, :phone_number, :building_name, :token, :item_id, :user_id
   

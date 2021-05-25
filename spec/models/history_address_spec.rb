@@ -26,10 +26,23 @@ RSpec.describe HistoryAddress, type: :model do
         expect(@history_address).to be_valid
       end
 
+      it 'phone_numberが11文字であれば登録できること' do
+        @history_address.phone_number = '12345678901'
+        @history_address.valid?
+        expect(@history_address).to be_valid
+      end
+
+      it 'phone_numberが10文字であれば登録できること' do
+        @history_address.phone_number = '1234567890'
+        @history_address.valid?
+        expect(@history_address).to be_valid
+      end
+
       it "tokenがあれば保存ができること" do
         expect(@history_address).to be_valid
       end
     end
+
 
     context '異常系' do
       it 'postal_codeが空だと登録できない' do
@@ -93,12 +106,19 @@ RSpec.describe HistoryAddress, type: :model do
         expect(@history_address.errors.full_messages).to include "Phone number is invalid"
       end
 
-      it 'phone_numberが11文字以下では登録できないこと' do
-        @history_address.phone_number = '1234567890'
+      it 'phone_numberが9文字以下では登録できないこと' do
+        @history_address.phone_number = '123456789'
         @history_address.valid?
         expect(@history_address.errors.full_messages).to include "Phone number is invalid"
       end
-      
+
+
+      it 'phone_numberが12文字以上では登録できないこと' do
+        @history_address.phone_number = '123456789012'
+        @history_address.valid?
+        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+      end
+
       it "user_idが空では登録できないこと" do
         @history_address.user_id = nil
         @history_address.valid?

@@ -9,10 +9,6 @@ class Item < ApplicationRecord
     validates :description
     validates :price
 
-    with_options format: { with: (/\d/) } do
-      validates :price
-    end
-
     with_options numericality: { other_than: 1 } do
       validates :category_id
       validates :state_id
@@ -22,6 +18,10 @@ class Item < ApplicationRecord
     end
   end
   
+  with_options format: { with: (/\d/) } do
+    validates :price
+  end
+
   validates_inclusion_of :price, in: 300..9_999_999
   
   extend ActiveHash::Associations::ActiveRecordExtensions

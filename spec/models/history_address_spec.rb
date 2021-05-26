@@ -38,36 +38,34 @@ RSpec.describe HistoryAddress, type: :model do
         expect(@history_address).to be_valid
       end
 
-      it "tokenがあれば保存ができること" do
+      it 'tokenがあれば保存ができること' do
         expect(@history_address).to be_valid
       end
     end
 
-
     context '異常系' do
       it 'postal_codeが空だと登録できない' do
-        @history_address.postal_code = ""
+        @history_address.postal_code = ''
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Postal code can't be blank", "Postal code is invalid"
-        
+        expect(@history_address.errors.full_messages).to include "Postal code can't be blank", 'Postal code is invalid'
       end
 
       it 'postal_codeにーがないと登録できない' do
-        @history_address.postal_code = "1111111"
+        @history_address.postal_code = '1111111'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Postal code is invalid"
+        expect(@history_address.errors.full_messages).to include 'Postal code is invalid'
       end
 
       it 'postal_codeが８文字以下では登録できないこと' do
-        @history_address.postal_code = "111-111"
+        @history_address.postal_code = '111-111'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Postal code is invalid"
+        expect(@history_address.errors.full_messages).to include 'Postal code is invalid'
       end
 
       it 'regional_idが１(--)だと登録できない' do
         @history_address.regional_id = 1
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Regional must be other than 1"
+        expect(@history_address.errors.full_messages).to include 'Regional must be other than 1'
       end
 
       it 'municipalityが空だと登録できない' do
@@ -85,53 +83,52 @@ RSpec.describe HistoryAddress, type: :model do
       it 'phone_numberが空だと登録できない' do
         @history_address.phone_number = ''
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number can't be blank", "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include "Phone number can't be blank", 'Phone number is invalid'
       end
 
       it 'phone_numberが全角数字だと登録できない' do
         @history_address.phone_number = '１１１１１１１１１１１'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include 'Phone number is invalid'
       end
 
       it 'phone_number半角英数混合では登録できないこと' do
         @history_address.phone_number = 'a1234567890'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include 'Phone number is invalid'
       end
 
       it 'phone_number半角英語では登録できないこと' do
         @history_address.phone_number = 'aaaaaaaaaaa'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include 'Phone number is invalid'
       end
 
       it 'phone_numberが9文字以下では登録できないこと' do
         @history_address.phone_number = '123456789'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include 'Phone number is invalid'
       end
-
 
       it 'phone_numberが12文字以上では登録できないこと' do
         @history_address.phone_number = '123456789012'
         @history_address.valid?
-        expect(@history_address.errors.full_messages).to include "Phone number is invalid"
+        expect(@history_address.errors.full_messages).to include 'Phone number is invalid'
       end
 
-      it "user_idが空では登録できないこと" do
+      it 'user_idが空では登録できないこと' do
         @history_address.user_id = nil
         @history_address.valid?
         expect(@history_address.errors.full_messages).to include "User can't be blank"
       end
 
-      it "item_idが空では登録できないこと" do
+      it 'item_idが空では登録できないこと' do
         @history_address.item_id = nil
         @history_address.valid?
         expect(@history_address.errors.full_messages).to include "Item can't be blank"
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @history_address.token = nil
         @history_address.valid?
         expect(@history_address.errors.full_messages).to include "Token can't be blank"

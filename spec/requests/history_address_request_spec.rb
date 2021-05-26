@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "HistoryAddresses", type: :request do
-
+RSpec.describe 'HistoryAddresses', type: :request do
 end

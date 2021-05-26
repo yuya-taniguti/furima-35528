@@ -17,13 +17,13 @@ class Item < ApplicationRecord
       validates :shipping_data_id
     end
   end
-  
-  with_options format: { with: (/\d/) } do
+
+  with_options format: { with: /\d/ } do
     validates :price
   end
 
   validates_inclusion_of :price, in: 300..9_999_999
-  
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :postage
